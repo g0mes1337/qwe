@@ -160,7 +160,7 @@ class PDO_ extends PDO
 
     function getUserInfo()
     {
-        $query = $this->prepare("SELECT request.id,request.name,request.description,category.category_name,request.status,request.data FROM request INNER JOIN category  INNER JOIN user WHERE user.id=:id_user and category.id=request.id_category ");
+        $query = $this->prepare("SELECT request.id,request.name,request.description,category.category_name,request.status,request.data FROM request INNER JOIN category  INNER JOIN user WHERE user.id=:id_user and category.id=request.id_category and user.id=request.id_user");
         $query->bindParam(':id_user', $_SESSION['id'], PDO::PARAM_STR);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
